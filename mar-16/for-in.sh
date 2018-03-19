@@ -14,3 +14,9 @@ for filename in folder/*.txt ; do
 	# payload:
 	echo $filename
 done
+echo
+echo "Range angeben:"
+echo "Bash version ${BASH_VERSION}..."
+for i in {0..10..2} ; do
+	echo "Welcome $i times"
+done
