@@ -1,9 +1,11 @@
 #!/bin/bash
 echo "Name of the current executable (\$0): $0"
 echo "Return value of the last command (\$?): $?"
+echo "Current script's PID (\$$): $$"
 echo "Parameter count (\$#): $#"
 if [ $# -gt 0 ] ; then
 	echo "Wir haben mindestens einen Parameter!"
+	echo "Liste aller Parameter (\$@): $@"
 else
 	echo "Wir haben keine Parameter..."
 	exit 0
