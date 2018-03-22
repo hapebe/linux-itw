@@ -6,10 +6,11 @@ fi
 find / -type f \
 ! -path "/dev/*" \
 ! -path "/proc/*" \
-! -path "/var/log/*" \
 ! -path "/sys/*" \
-! -path "*/.cache/*" \
+! -path "/mnt/*" \
+! -path "/var/log/*" \
 ! -path "/run/user/*/gvfs/*" \
+! -path "*/.cache/*" \
 ! -name "*.iso" \
 ! -name "*.vdi" \
 -exec ./grep-file.sh $1 {} ';' \

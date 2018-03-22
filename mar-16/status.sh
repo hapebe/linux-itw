@@ -15,3 +15,8 @@ who
 rootfree=$(df -h / | grep /dev | awk '{print $4}')
 memfree=$(free -h | grep Mem | awk '{print $4}')
 echo "${rootfree} freier Speicher in / und ${memfree} freies RAM."
+# do we have access smartctl?
+if dpkg -s smartmontools 2>/dev/null 1>&2 ; then
+	printf ""
+	# echo "Yeehah - we can show the SMART status..."
+fi

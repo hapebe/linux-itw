@@ -7,10 +7,12 @@ if [[ ! -f $1 ]] ; then
 	echo "File $1 does not exist." 1>&2
 	exit 1
 fi
-lines=$(wc -l $1 | awk '{print $1}')
-words=$(wc -w $1 | awk '{print $1}')
-chars=$(wc -m $1 | awk '{print $1}')
-echo "Die Datei $1"
-echo " hat $lines Zeilen"
-echo " hat $words Wörter"
-echo " hat $chars Zeichen"
+stats=`wc $1`
+lines=`echo $stats | awk '{print $1}'`
+words=`echo $stats | awk '{print $2}'`
+chars=`echo $stats | awk '{print $3}'`
+unset stats
+printf "Die Datei $1 "
+printf "hat $lines Zeilen, "
+printf "$words Wörter und "
+echo "$chars Zeichen"
