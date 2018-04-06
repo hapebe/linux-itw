@@ -19,4 +19,6 @@ echo "${rootfree} freier Speicher in / und ${memfree} freies RAM."
 if dpkg -s smartmontools 2>/dev/null 1>&2 ; then
 	printf ""
 	# echo "Yeehah - we can show the SMART status..."
+	# sudo smartctl -a /dev/sda
 fi
+echo ""

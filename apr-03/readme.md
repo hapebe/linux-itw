@@ -6,6 +6,7 @@ Experiments with RAID (mdadm) in a CentOS virtual machine
 * create the actual multi-disk device - see create-md0.sh
 * create a file system on the RAID device: mkfs.ext4 /dev/md0
 * ... and mount it: mount -t ext4 /dev/md0 /mnt/raid5
+* show status of the RAID device: mdadm --detail /dev/md0
 
 ## Expand the RAID onto another disk
 * Create another VDI, prepare with the same partition setup
