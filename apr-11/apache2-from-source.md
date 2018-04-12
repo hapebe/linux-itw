@@ -38,3 +38,8 @@ make: *** [Makefile:83: install] Error 1
 configure: error: Cannot use an external APR with the bundled APR-util
 ```
      * temporarily (?) giving up at this point...
+
+* success!
+* sudo ./configure --with-apr=./srclib/apr --with-apr-util=./srclib/apr-util --prefix=/usr/local/apache2
+* sudo make (no errors!)
+* sudo make install
