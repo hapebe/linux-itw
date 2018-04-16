@@ -1,0 +1,48 @@
+This script (/home/hapebe/linux-grundlagen/apr-13/mail-proc.sh) has been called with 0 parameters.
+--- end of params
+
+STDIN:
+From hapebe@hapebe-ubuntu Fri Apr 13 14:06:47 2018
+Return-Path: <hapebe@hapebe-ubuntu>
+X-Original-To: processor@hapebe-ubuntu
+Delivered-To: processor@hapebe-ubuntu
+Received: by hapebe-ubuntu.raum102.local (Postfix, from userid 1000)
+id BDACC280265; Fri, 13 Apr 2018 14:06:47 +0200 (CEST)
+Subject: Mail 1
+To: <processor@hapebe-ubuntu>
+X-Mailer: mail (GNU Mailutils 3.1.1)
+Message-Id: <20180413120647.BDACC280265@hapebe-ubuntu.raum102.local>
+Date: Fri, 13 Apr 2018 14:06:47 +0200 (CEST)
+From: hapebe@hapebe-ubuntu (hapebe)
+
+Dies ist ein Mail-Text. Ich probiere damit aus, wie man aus dem Terminal E-Mails versenden kann.
+
+Schönen Tag noch!
+
+Gruß,
+Hans-Peter
+--- end of STDIN
+
+This script (/home/hapebe/linux-grundlagen/apr-13/mail-proc.sh) has been called with 0 parameters.
+--- end of params
+
+STDIN:
+From second@hapebe-ubuntu Fri Apr 13 14:10:03 2018
+Return-Path: <second@hapebe-ubuntu>
+X-Original-To: processor@hapebe-ubuntu
+Delivered-To: processor@hapebe-ubuntu
+Received: by hapebe-ubuntu.raum102.local (Postfix, from userid 1001)
+id 0ADA5280265; Fri, 13 Apr 2018 14:10:02 +0200 (CEST)
+Subject: Test!
+To: <processor@hapebe-ubuntu>
+X-Mailer: mail (GNU Mailutils 3.1.1)
+Message-Id: <20180413121003.0ADA5280265@hapebe-ubuntu.raum102.local>
+Date: Fri, 13 Apr 2018 14:10:02 +0200 (CEST)
+From: second@hapebe-ubuntu (Second User)
+
+Dies ist eine Mail vom User second.
+
+Viele Grüße!
+second
+--- end of STDIN
+

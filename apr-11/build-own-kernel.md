@@ -123,5 +123,81 @@ make: *** [debian/stamp/build/buildpackage] Error 2
 * new attempt at: make-kpkg --initrd buildpackage
 * well, things were looking good when I ran into the 20GByte size limit of the /home partition holding the virtualbox differential disk image...
 
-* So, starting over again (from an older snapshot of the VM...) ...
+## So, starting over again (from an older snapshot of the VM...) ...
+
 * Installed devel and kernel packages again, configured ...
+* Ran for approx. 3.5 hours, then:
+```
+find Documentation/DocBook/man -name '*.9' | xargs gzip -nf
+make[3]: Leaving directory '/home/hapebe/kernel/linux-source-4.4.0'
+debian/ruleset/targets/doc.mk:34: recipe for target 'debian/stamp/install/linux-doc-4.4.114' failed
+make[2]: *** [debian/stamp/install/linux-doc-4.4.114] Error 2
+make[2]: Leaving directory '/home/hapebe/kernel/linux-source-4.4.0'
+debian/ruleset/common/targets.mk:357: recipe for target 'debian/stamp/do-install-indep' failed
+make[1]: *** [debian/stamp/do-install-indep] Error 2
+make[1]: Leaving directory '/home/hapebe/kernel/linux-source-4.4.0'
+dpkg-buildpackage: error: fakeroot debian/rules binary gave error exit status 2
+debian/ruleset/targets/common.mk:401: recipe for target 'debian/stamp/build/buildpackage' failed
+make: *** [debian/stamp/build/buildpackage] Error 2
+```
+* giving up again - now, let's try with to do it with sources of the current kernel somehow...
+
+# 3rd attempt
+* trying a bit different:
+```
+sudo apt-get --install-suggests install linux-source-4.13.0
+```
+
+Which turns out to be a really impressive huge list:
+
+```
+Need to get 2.286 MB of archives.
+After this operation, 5.802 MB of additional disk space will be used.
+```
+
+* trying to install the other suggested packages as well:
+* `sudo apt-get install build-essential kernel-package libssl-dev`
+* apparently, everything except the libssl-dev had already been installed
+* now we have a kernel source folder: `/usr/src/linux-source-4.13.0`
+* in ~/kernel: `tar xvjf /usr/src/linux-source-4.13.0.tar.bz2`
+* in addition, I also copy the folders "debian" and "debian.hwe" to the resulting sources folder
+* copy existing config & accepting all defaults of make oldconfig, like before...
+* ready to go! (?) but actually taking a break again: It's Friday afternoon.
+
+* Monday! `make-kpkg --initrd buildpackage`
+* After ~ 3 hours, still no success:
+```
+====== making target debian/stamp/INST/linux-manual-4.13.16 [new prereqs: do-pre-inst-indep linux-manual-4.13.16]======
+
+tar: crypto.hwe.master: Cannot stat: No such file or directory
+tar: Exiting with failure status due to previous errors
+(cd /home/hapebe/kernel/linux-source-4.13.0/debian/linux-source-4.13.16/usr/src/linux-source-4.13.16/include; rm -f asm ; )
+install -p    -o root -g root  -m  644 debian/changelog      /home/hapebe/kernel/linux-source-4.13.0/debian/linux-source-4.13.16/usr/src/linux-source-4.13.16/Debian.src.changelog
+(cd /home/hapebe/kernel/linux-source-4.13.0/debian/linux-source-4.13.16/usr/src/linux-source-4.13.16;                                                          \
+            /usr/bin/make   ARCH=i386 distclean)
+make[3]: Entering directory '/home/hapebe/kernel/linux-source-4.13.0/debian/linux-source-4.13.16/usr/src/linux-source-4.13.16'
+  CLEAN   arch/x86/lib
+  CLEAN   .
+scripts/Makefile.clean:14: crypto/Makefile: No such file or directory
+make[4]: *** No rule to make target 'crypto/Makefile'.  Stop.
+Makefile:1345: recipe for target '_clean_crypto' failed
+make[3]: *** [_clean_crypto] Error 2
+make[3]: *** Waiting for unfinished jobs....
+  CLEAN   certs
+  CLEAN   arch/x86/entry/vdso
+  CLEAN   arch/x86/realmode/rm
+  CLEAN   arch/x86/kernel/cpu
+  CLEAN   arch/x86/kernel
+make[3]: *** wait: No child processes.  Stop.
+debian/ruleset/targets/source.mk:35: recipe for target 'debian/stamp/install/linux-source-4.13.16' failed
+make[2]: *** [debian/stamp/install/linux-source-4.13.16] Error 2
+make[2]: Leaving directory '/home/hapebe/kernel/linux-source-4.13.0'
+debian/ruleset/common/targets.mk:357: recipe for target 'debian/stamp/do-install-indep' failed
+make[1]: *** [debian/stamp/do-install-indep] Error 2
+make[1]: Leaving directory '/home/hapebe/kernel/linux-source-4.13.0'
+dpkg-buildpackage: error: fakeroot debian/rules binary gave error exit status 2
+debian/ruleset/targets/common.mk:401: recipe for target 'debian/stamp/build/buildpackage' failed
+make: *** [debian/stamp/build/buildpackage] Error 2
+```
+
+* giving up for now... :-(
