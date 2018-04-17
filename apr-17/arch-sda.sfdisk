@@ -1,0 +1,7 @@
+label: dos
+label-id: 0xee7f6b82
+device: /dev/sda
+unit: sectors
+
+/dev/sda1 : start=        2048, size=    81788928, type=83
+/dev/sda4 : start=    81790976, size=     2095104, type=82

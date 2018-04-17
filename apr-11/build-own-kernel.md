@@ -35,6 +35,8 @@ The following NEW packages will be installed:
 Need to get 103 MB of archives.
 After this operation, 306 MB of additional disk space will be used.
 ```
+
+# 2nd Attempt
 * Unfortunately, https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel does 
 not tell me where to expect the kernel sources, and I can only seem to 
 find headers for my current kernel.
@@ -112,6 +114,7 @@ dpkg-buildpackage: error: debian/rules build gave error exit status 2
 debian/ruleset/targets/common.mk:401: recipe for target 'debian/stamp/build/buildpackage' failed
 make: *** [debian/stamp/build/buildpackage] Error 2
 ```
+## OverlayFS?
 * Try to exclude the overlayfs from kernel ...
 * make xconfig does not works as well, trying to fix qt...
 * sudo apt-get install qtdeclarative5-dev
