@@ -1,4 +1,6 @@
 # TCPdump
+Preparation:
+`netstat -i` shows (among other facts) the promiscuous flag for the network interfaces. In my system, it was not enabled, so I used `ip link set enp2s0 promisc on`
 
 First I generated some captured network traffic using this command:
 ```

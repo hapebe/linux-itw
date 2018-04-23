@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Current shell options (\$-): $-"
 echo "Name of the current executable (\$0): $0"
 echo "Return value of the last command (\$?): $?"
 echo "Current script's PID (\$$): $$"
