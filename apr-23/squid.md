@@ -22,3 +22,8 @@ perl Makefile.PL \
 # SquidAnalyzer log reporting daily
 23 9 * * * squid-analyzer > /dev/null 2>&1
 ```
+
+## Further Reading
+
+Use squid as a transparent / forced proxy, to block certain sites?
+See: http://www.squidguard.org/
