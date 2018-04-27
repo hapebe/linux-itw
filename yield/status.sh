@@ -1,6 +1,7 @@
 #!/bin/bash
 # You might want to add a call to this script to your ~/.bashrc ...?
-dt=`date +"%A, %e. %B %k:%M"`
+LC_TIME=en_US.UTF-8
+dt=`date +"%A, %B %e, %k:%M"`
 printf "Hi $(whoami)!\nIt's ${dt}.\n"
 name=$(hostname)
 ipv4=$(hostname -I | awk '{print $1}')
