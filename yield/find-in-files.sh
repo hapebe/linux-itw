@@ -15,6 +15,7 @@ if [ ! -d $TOPDIR ] ; then
 	echo "Error: $TOPDIR is not directory or cannot be accessed."
 	exit 1
 fi
+MYPATH=$(dirname $0)
 echo "Searching for \"$SEARCH\" in directory $TOPDIR ..."
 find $TOPDIR -type f \
 ! -path "/dev/*" \
@@ -26,5 +27,5 @@ find $TOPDIR -type f \
 ! -path "*/.cache/*" \
 ! -name "*.iso" \
 ! -name "*.vdi" \
--exec ./grep-file.sh "$SEARCH" {} ';' \
+-exec $MYPATH/grep-file.sh "$SEARCH" {} ';' \
 2>/dev/null
