@@ -15,7 +15,7 @@ echo "${distro} with kernel ${kernel}"
 echo "Logged in users:"
 who
 rootfree=$(df -h / | tail -n1 | awk '{print $4}')
-memfree=$(free -h | grep Mem | awk '{print $4}')
-memavail=$(free -h | grep Mem | awk '{print $7}')
+memfree=$(free -h | sed -n '2p' | awk '{print $4}')
+memavail=$(free -h | sed -n '2p' | awk '{print $7}')
 echo "${rootfree} free space in / and ${memfree} free / ${memavail} available RAM."
 echo ""
