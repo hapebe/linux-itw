@@ -17,6 +17,6 @@ LOG=$MYDIR/${MYSCRIPT}.log
 # echo $LOG
 
 { time \
-wget -pEH -U "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" $SPON \
+wget --no-check-certificate -pEH -U "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" $SPON \
 2>> $LOG ; \
 } 2>> $LOG
