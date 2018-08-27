@@ -12,7 +12,7 @@ fi
 CURRENT_OUTPUT=`xrandr -q | grep " connected" | cut -d" " -f1`
 CURRENT_MODE=`xvidtune -show | cut -d" " -f1 | tr -d \"`
 if [ $1 = "off" ] ; then
-	xrandr --output $CURRENT_OUTPUT --rate 60 --mode $CURRENT_MODE --fb $CURRENT_MODE --panning $CURRENT_MODE
+	xrandr --output $CURRENT_OUTPUT --rate 60 --mode $CURRENT_MODE --fb $CURRENT_MODE --panning $CURRENT_MODE --scale 1x1
 else
 	xrandr --output $CURRENT_OUTPUT --rate 60 --mode $CURRENT_MODE --fb $1 --panning $1
 fi
