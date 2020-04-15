@@ -5,8 +5,8 @@ dt=`date +"%A, %B %e, %k:%M"`
 printf "Hi $(whoami)!\nIt's ${dt}.\n"
 name=$(hostname)
 ipv4=$(hostname -I | awk '{print $1}')
-upstatus=$(uptime -p)
-echo "Host: ${name}, IPv4 address: ${ipv4}, ${upstatus}"
+upstatus=$(uptime | tr -s " " | cut -d" " -f 4 | tr -d \,)
+echo "Host: ${name}, IPv4 address: ${ipv4}, up ${upstatus} h"
 printf "CPU: "
 cat /proc/cpuinfo | grep "model name" | cut -d: -f2 | uniq | sed -e 's/^[[:space:]]*//'
 distro=$(lsb_release -d | awk '{print $2 " " $3}')
