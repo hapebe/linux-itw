@@ -9,7 +9,7 @@ ipv4=$(hostname -I | awk '{print $1}')
 
 upsecs=$(cat /proc/uptime | cut -f1 -d" " | cut -f1 -d.)
 uphours=$(expr $upsecs / 3600)
-upmins=$(expr $upsecs / 60 - $uphours \* 60)
+printf -v upmins "%02d" $(expr $upsecs / 60 - $uphours \* 60)
 upstatus="up ${uphours}:${upmins} h"
 
 echo "Host: ${name}, IPv4 address: ${ipv4}, ${upstatus}"
