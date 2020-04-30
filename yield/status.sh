@@ -3,10 +3,17 @@
 LC_TIME=en_US.UTF-8
 dt=`date +"%A, %B %e, %k:%M"`
 printf "Hi $(whoami)!\nIt's ${dt}.\n"
+
 name=$(hostname)
 ipv4=$(hostname -I | awk '{print $1}')
-upstatus=$(uptime | tr -s " " | cut -d" " -f 4 | tr -d \,)
-echo "Host: ${name}, IPv4 address: ${ipv4}, up ${upstatus} h"
+
+upsecs=$(cat /proc/uptime | cut -f1 -d" " | cut -f1 -d.)
+uphours=$(expr $upsecs / 3600)
+upmins=$(expr $upsecs / 60 - $uphours \* 60)
+upstatus = "up ${uphours}:${upmins} h"
+
+echo "Host: ${name}, IPv4 address: ${ipv4}, ${upstatus}"
+
 printf "CPU: "
 cat /proc/cpuinfo | grep "model name" | cut -d: -f2 | uniq | sed -e 's/^[[:space:]]*//'
 distro=$(lsb_release -d | awk '{print $2 " " $3}')
