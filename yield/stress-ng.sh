@@ -9,4 +9,9 @@ else
 fi
 
 NCPU=$(lscpu | grep ^CPU\(s\)\: | rev | cut -d" " -f1 | rev)
+NCPU2=$(lscpu -p | grep -v \# | wc -l)
+if [[ $NCPU -ne $NCPU2 ]]; then
+	echo "Failed to find number of processor cores ($NCPU vs. $NCPU2), exiting..."
+	exit 1
+fi
 stress-ng --cpu $NCPU --timeout 60s --metrics-brief
