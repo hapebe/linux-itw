@@ -29,6 +29,7 @@ apt-file update
 
 # TODO Arc Menu etc.
 
+echo "Consider Atom ..."
 echo "Think about freeciv, freecol, wesnoth, nethack-x11 ..."
 
 mkdir -p /var/local/backup/${u}
