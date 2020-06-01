@@ -12,10 +12,18 @@ uphours=$(expr $upsecs / 3600)
 printf -v upmins "%02d" $(expr $upsecs / 60 - $uphours \* 60)
 upstatus="up ${uphours}:${upmins} h"
 
-echo "Host: ${name}, IPv4 address: ${ipv4}, ${upstatus}"
+echo -n "Host: "; printf '\033[34m\033[1m'; echo -n ${name}; printf '\033[39m \033[0m'
+echo ", IPv4 address: ${ipv4}, ${upstatus}"
 
 printf "CPU: "
-cat /proc/cpuinfo | grep "model name" | cut -d: -f2 | uniq | sed -e 's/^[[:space:]]*//'
+cpuinfo=$(cat /proc/cpuinfo | grep "model name" | cut -d: -f2 | uniq | sed -e 's/^[[:space:]]*//')
+printf 'CPU %s ' "$cpuinfo"
+# see if we can get temperature:
+source /etc/os-release
+if [[ "$ID" = "raspbian" ]]; then
+	vcgencmd measure_temp | cut -d= -f2
+fi
+
 distro=$(lsb_release -d | awk '{print $2 " " $3}')
 kernel=$(uname -r)
 echo "${distro} with kernel ${kernel}"
