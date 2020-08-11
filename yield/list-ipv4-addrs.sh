@@ -1,5 +1,6 @@
 #!/bin/bash
 for x in $(hostname -I); do
-	echo IPv4 address: $x
+	if [[ ! $x == *":"* ]] ; then
+		echo IPv4 address: $x
+	fi
 done
-
