@@ -34,3 +34,7 @@ Regenerate: (?)
 
 * Add a record to `/etc/fstab`  
 `/dev/md0 /raid5 ext4 defaults 0 0`
+
+* Re-create the array on a different system:  
+`mdadm --assemble --run --force /dev/md0 /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1`  
+`--force` is only necessary if the array has not been synced before, i.e. it is not "clean".
