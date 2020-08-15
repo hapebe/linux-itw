@@ -1,6 +1,7 @@
 #!/bin/bash
 # You might want to add a call to this script to your ~/.bashrc ...?
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR="$( cd "$( dirname $( readlink -f "${BASH_SOURCE[0]}" ) )" >/dev/null 2>&1 && pwd )"
+
 LC_TIME=en_US.UTF-8
 dt=`date +"%A, %B %e, %k:%M"`
 printf "Hi $(whoami)!\nIt's ${dt}.\n"
