@@ -4,3 +4,4 @@ benchmark-internet/urls.sh
 .cred
 *.pcapng
 *.cap
+ping.log
