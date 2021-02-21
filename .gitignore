@@ -5,3 +5,4 @@ openssl/raspi-env.sh
 .cred
 *.pcapng
 *.cap
+ping.log
