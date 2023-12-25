@@ -5,6 +5,10 @@ services:
         image: mysql:5.7
         volumes:
           - data_db:/var/lib/mysql
+        networks:
+            - group1
+        ports:
+            - 2319:3306
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -16,8 +20,10 @@ services:
         image: wordpress:latest
         depends_on:
             - db
-        ports:
-            - 581:80
+        networks:
+            - group1
+        #ports:
+        #    - 581:80
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
@@ -30,3 +36,8 @@ services:
             - .fs-overlays/uploads:/var/www/html/wp-content/uploads
 volumes:
     data_db:
+
+networks:
+    group1:
+        name: group1
+        driver: bridge
