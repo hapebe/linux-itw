@@ -16,18 +16,17 @@ upstatus="up ${uphours}:${upmins} h"
 echo -n "Host: "; printf '\033[34m\033[1m'; echo -n ${name}; printf '\033[39m \033[0m'
 echo ", ${upstatus}"
 
-printf "CPU: "
+distro=$(lsb_release -d | awk '{print $2 " " $3}')
+kernel=$(uname -r)
+echo "${distro} with kernel ${kernel}"
+
 cpuinfo=$(cat /proc/cpuinfo | grep "model name" | cut -d: -f2 | uniq | sed -e 's/^[[:space:]]*//')
-printf 'CPU %s ' "$cpuinfo"
+printf "CPU: %s \n" "$cpuinfo"
 # see if we can get temperature:
 source /etc/os-release
 if [[ "$ID" = "raspbian" ]]; then
 	vcgencmd measure_temp | cut -d= -f2
 fi
-
-distro=$(lsb_release -d | awk '{print $2 " " $3}')
-kernel=$(uname -r)
-echo "${distro} with kernel ${kernel}"
 
 $DIR/list-ipv4-addrs.sh
 
