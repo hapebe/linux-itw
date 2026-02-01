@@ -20,6 +20,7 @@ ln -s ~/Projects/linux-itw/find-utils/find-in-files.sh ~/bin/find-in-files
 ln -s ~/Projects/linux-itw/yield/update-full.sh ~/bin/update-full
 ln -s ~/Projects/linux-itw/yield/purge-unused-kernels.sh ~/bin/purge-unused-kernels
 ln -s ~/Projects/linux-itw/yield/status.sh ~/bin/status
+ln -s ~/Projects/linux-itw/yield/list-ipv4-addrs.sh ~/bin/list-ipv4-addrs.sh
 
 # call status script at the end of .bashrc:
 present=$(grep \~/bin/status ~/.bashrc)
